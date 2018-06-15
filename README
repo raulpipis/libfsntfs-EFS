@@ -1,0 +1,17 @@
+This is the version of libfsntfs with EFS support.
+For all the functions comments exist to describe how they function.
+There are two groups of functions:
+	libfsntfs_efs_attribute_*, functions that work with the efs attribute
+	libfsntfs_efs_data_*, functions that work with the data in the file
+I didn't know how to put openssl in automake, so for this version I modified
+the automatically generated Makefile and added the library manually.
+Also for the attribute functions, the first function to be called must be
+libfsntfs_efs_attribute_initialize_data.
+The key used in the libfsntfs_efs_data_* functions is the one extracted
+using libfsntfs_efs_attribute_* functions.
+The RSA key for libfsntfs_efs_attribute_* must ge given in PEM Base64 format
+Also in the folder there are two libraries, libtomcrypt and libtommath, that
+I tried to integrate with libfsntfs, but I wrongly thought that they do not work
+because of the issue with the endianess used by Windows' CryptoAPI. Maybe they
+will help with the RSA issue. Libtommath is used to offer support for RSA in
+libtomcrypt.
